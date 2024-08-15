@@ -1,4 +1,4 @@
-console.log('hello world2');
+//console.log('hello world2');
 
 
 const pokemon = require('./data.js')
@@ -92,6 +92,67 @@ Hint:
 More Hints: The existing starter Pokemon will be *replaced* in your party with the Pokemon it evolved into. When working with an array of objects, the splice() array method is ideal for replacing one element with another. 
 Solve Exercise 7 here:
 */
+
+//Just to practice, I know it's the pokemon[25]. 
+//First, we  need to find out who is the next, we can use the next() method for it!
+//adding the trackIdx property
+game.trackIdx = 0;
+//console.log(game);
+
+//building the next() method.
+game.next = function () {
+    game.trackIdx += 1;
+    return pokemon[game.trackIdx];
+};
+
+//find Pikachu index:
+const pikachuIdx = pokemon.findIndex(p => p.name === 'Pikachu');
+//console.log('Pikachu Index:', pikachuIdx); //24
+
+//set trackIdx to Pikachu's index:
+game.trackIdx = pikachuIdx;
+//console.log(game.trackIdx);
+
+//use the next() method to find the next pokemon
+const nextPokemon = game.next();
+//console.log(nextPokemon); //`Raichu`, 26
+
+//finding Raichu index
+const raichuIdx = pokemon.findIndex(p =>p.name === 'Raichu');
+//console.log(raichuIdx); //25
+
+//replace the current starter Pokémon in your party with its evolved form
+game.party.splice(0, 1, pokemon[25]);
+//console.log(game.party);
+
+/*
+Exercise 8
+1. Print the name of each Pokémon in your party.
+2. Consider using a loop or an array method to access each Pokémon's name.
+Solve Exercise 8 here:
+*/
+
+for (let pokemon of game.party) {
+   //console.log(pokemon.name);
+  }
+//or
+// game.party.forEach(party => {
+//     console.log(party.name);
+// })
+
+/*
+Exercise 9
+1. Can you print out all the starter Pokémon from the `pokemon` array?
+2. Think about how you can identify a starter Pokémon and then log their names.
+Solve Exercise 9 here:
+*/
+pokemon.forEach(p => {
+        if (p.starter === true) {
+        console.log(p.name);
+    }
+});
+
+
 
 
 
